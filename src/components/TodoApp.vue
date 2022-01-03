@@ -20,9 +20,9 @@
     <table class="table table-bordered mt-5">
       <thead>
         <tr>
-          <th scope="col">Task</th>
-          <th scope="col" style="width: 120px">Status</th>
-          <th scope="col" class="text-center">Action</th>
+          <th width="70%" scope="col">Task</th>
+          <th width="10%" scope="col">Status</th>
+          <th width="20%" scope="col" class="text-center">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -42,7 +42,7 @@
                 'text-warning': task.status === 'in-progress',
               }"
             >
-              {{ capitalizeFirstChar(task.status) }}
+              {{ task.status }}
             </span>
           </td>
           <td class="text-center">
@@ -60,26 +60,38 @@
 export default {
   name: 'TodoApp',
   props: {
-    msg: String
+    msg: String,
+    tasks: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    },
+    statuses: {
+      type: Array,
+      default: () => {
+        return []
+      }
+    }
   },
   data() {
     return {
       task: "",
-      statuses: ["to-do", "in-progress", "finished"],
-      tasks: [
-        {
-          name: "Drink coffee in the morning",
-          status: "finished",
-        },
-        {
-          name: "Check Email and Discord",
-          status: "in-progress",
-        },
-        {
-          name: "Start coding for inosoft project",
-          status: "to-do",
-        },
-      ],
+      // statuses: ["to-do", "in-progress", "finished"],
+      // tasks: [
+      //   {
+      //     name: "Drink coffee in the morning",
+      //     status: "finished",
+      //   },
+      //   {
+      //     name: "Check Email and Discord",
+      //     status: "in-progress",
+      //   },
+      //   {
+      //     name: "Start coding for inosoft project",
+      //     status: "to-do",
+      //   },
+      // ],
     };
   },
   methods: {
@@ -92,7 +104,8 @@ export default {
       this.tasks[index].status = this.statuses[newIndex];
     },
     deleteTask(index) {
-      this.tasks.splice(index, 1);
+      this.$store.dispatch("todos/deleteTodo",index)
+      // this.tasks.splice(index, 1);
     },
     submitTask() {
       if (this.task.length === 0) return;
