@@ -99,9 +99,11 @@ export default {
       return str.charAt(0).toUpperCase() + str.slice(1);
     },
     changeStatus(index) {
-      let newIndex = this.statuses.indexOf(this.tasks[index].status);
-      if (++newIndex > 2) newIndex = 0;
-      this.tasks[index].status = this.statuses[newIndex];
+      this.$store.dispatch("todos/changeStatus",index)
+
+      // let newIndex = this.statuses.indexOf(this.tasks[index].status);
+      // if (++newIndex > 2) newIndex = 0;
+      // this.tasks[index].status = this.statuses[newIndex];
     },
     deleteTask(index) {
       this.$store.dispatch("todos/deleteTodo",index)
