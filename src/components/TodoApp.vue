@@ -53,6 +53,12 @@
         </tr>
       </tbody>
     </table>
+    <div>
+      <button class="btn btn-success rounded-2" @click="addBackendTask">
+          <i class="fas fa-plus btn-icon me-2"></i>
+          <span class="fw-bold me-2">Add Backend Task</span>
+        </button>
+    </div>
   </div>
 </template>
 
@@ -117,6 +123,9 @@ export default {
       });
       this.task = "";
     },
+    addBackendTask(){
+      this.$store.dispatch("todos/getNewTaskFromBackend");
+    }
   },
 };
 </script>

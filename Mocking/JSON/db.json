@@ -1,0 +1,12 @@
+{
+    "new_tasks": [
+        {
+            "name": "Push Up 100x, Sit Up 100x, Run 10KM",
+            "status": "to-do"
+        },
+        {
+            "name": "Eat Banana",
+            "status": "to-do"
+        }
+    ]   
+}

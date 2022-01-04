@@ -7,7 +7,14 @@ const CHANGESTATUS = (state, index) => {
     state.tasks[index].status = state.statuses[newIndex];
 }
 
+const UPDATEBACKENDTASK = (state, payload) => {
+    for(let i=0; i<payload.length; i++){
+        state.tasks.push(payload[i]);
+    }
+}
+
 export {
     DELETETODO,
-    CHANGESTATUS
+    CHANGESTATUS,
+    UPDATEBACKENDTASK
 }
